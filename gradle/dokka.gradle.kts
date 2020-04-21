@@ -75,7 +75,9 @@ tasks.withType(org.jetbrains.dokka.gradle.DokkaTask::class.java).all {
         multiplatform {
             create("common") {
                 sourceRoot {
-                    // `kotlin` is not
+                    // `kotlin` is not available here, 
+                    // but kotlin.jvm plugin is available in the all modules
+                    // applying this plugin to this file also does nothing
                     path = "${project.rootDir}/${project.name}/src/${name}Main/kotlin"
                     platform = "common"
                 }
