@@ -4,9 +4,9 @@
 
 All necessary information is available in these files:
 
-/build.gradle.kts
-/gradle/dokka.gradle.kts
-/some_module/build.gradle.kts
+[/build.gradle.kts](https://github.com/petersamokhin/dokka-issue-reproduce/blob/master/build.gradle.kts)<br>
+[/gradle/dokka.gradle.kts](https://github.com/petersamokhin/dokka-issue-reproduce/blob/master/gradle/dokka.gradle.kts)<br>
+[/some_module/build.gradle.kts](https://github.com/petersamokhin/dokka-issue-reproduce/blob/master/some_module/build.gradle.kts)<br>
 
 See the comments.
 
