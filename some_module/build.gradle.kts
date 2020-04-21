@@ -32,5 +32,5 @@ kotlin {
     }
 }
 
-// or this line can be here
-// apply(from = "${rootDir}/gradle/dokka.gradle.kts")
+// or here:
+// apply(from = "${rootDir}/gradle/0.9.18_dokka.gradle")

@@ -11,6 +11,7 @@ But all is ok and highlighted in the IDEA.
 But, in this case, I can't remove the `classpath` line from the *root* build.gradle.kts file.
 */
 
+
 buildscript {
     repositories {
         jcenter()
@@ -47,7 +48,7 @@ tasks.withType(org.jetbrains.dokka.gradle.DokkaTask::class.java).all {
 
     // `subProjects` does nothing, as far as I think, because
     // the task output is the same in cases with or without this
-    subProjects = listOf(":some_module") 
+    subProjects = mutableListOf(":some_module") 
 
     // In the dokka repo readme, said that:
     // << In the multiplatform mode, instead of using the configuration block, 
@@ -55,11 +56,11 @@ tasks.withType(org.jetbrains.dokka.gradle.DokkaTask::class.java).all {
     // `subProjects` are available only on DokkaTask object
     configuration {
         // this does nothing
-        impliedPlatforms = listOf("common")
+        impliedPlatforms = mutableListOf("common")
         
         skipEmptyPackages = true
         perPackageOption {
-            prefix = "com.petersamokhin.someproject.internal"
+            prefix = "com.petersamokhin.dokkaissuereproduce.internal"
             suppress = true
         }
 
@@ -98,7 +99,7 @@ tasks.withType(org.jetbrains.dokka.gradle.DokkaTask::class.java).all {
                     create(it) {
                         sourceRoot {
                             path = "${project.rootDir}/${project.name}/src/${name}Main/kotlin"
-                            targets = listOf("native")
+                            targets = mutableListOf("native")
                             platform = "native"
                         }
                     }

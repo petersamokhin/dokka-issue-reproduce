@@ -1,0 +1,63 @@
+apply plugin: 'org.jetbrains.dokka'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath("org.jetbrains.dokka:dokka-gradle-plugin:0.10.1")
+    }
+}
+
+tasks.withType(org.jetbrains.dokka.gradle.DokkaTask).all {
+    throw new GradleException("Never been here")
+    outputDirectory = "$rootDir/docs/0.0.x"
+    outputFormat = "gfm"
+
+    configuration {
+        impliedPlatforms = ["common"]
+        
+        skipEmptyPackages = true
+        perPackageOption {
+            prefix = "com.petersamokhin.dokkaissuereproduce.internal"
+            suppress = true
+        }
+
+        kotlinTasks {
+            defaultKotlinTasks().apply {
+                [":core", ":http-clients:jvm-okhttp-http-client", ":http-clients:common-ktor-http-client"]
+                    .map { "$it:compileKotlin" }
+            }
+        }
+    }
+
+    if (project.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform")) {
+        multiplatform {
+            create("common") {
+                sourceRoot {
+                    path = "${project.rootDir}/${project.name}/src/${name}Main/kotlin"
+                    platform = "common"
+                }
+            }
+
+            create("jvm") {
+                sourceRoot {
+                    path = "${project.rootDir}/${project.name}/src/${name}Main/kotlin"
+                    platform = "jvm"
+                }
+            }
+
+            ["darwin", "linux", "mingw", "native", "pthread"]
+                .forEach {
+                    create(it) {
+                        sourceRoot {
+                            path = "${project.rootDir}/${project.name}/src/${name}Main/kotlin"
+                            targets = ["native"]
+                            platform = "native"
+                        }
+                    }
+                }
+        }
+    }
+}

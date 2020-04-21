@@ -7,18 +7,16 @@ buildscript {
 
     dependencies {
         classpath(kotlin("gradle-plugin", "1.3.72"))
-        classpath("org.jetbrains.dokka:dokka-gradle-plugin:0.10.1")
+
+        // Change version to this and use `dokka.gradle{.kts}` files.
+        // classpath("org.jetbrains.dokka:dokka-gradle-plugin:0.10.1")
+        
+        // Change version to this and use `0.9.18_dokka.gradle{.kts}` files.
+        // classpath("org.jetbrains.dokka:dokka-gradle-plugin:0.9.18")
     }
 }
 
 allprojects {
-    apply(plugin = "org.jetbrains.dokka")
-
-    // it makes no sense, where to place this line;
-    // as far as I can see the command line output;
-    // docs directory is empty in all cases
-    // apply(from = "${rootDir}/gradle/dokka.gradle.kts")
-
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).all {
         JavaVersion.VERSION_1_8.toString().also {
             kotlinOptions.jvmTarget = it
@@ -37,7 +35,17 @@ allprojects {
 
     group = "com.petersamokhin.dokkaissuereproduce"
     version = "0.0.1-SNAPSHOT"
-}
 
-// or this line can be here
-// apply(from = "${rootDir}/gradle/dokka.gradle.kts")
+    // here, or at the end of the each build.gradle in necessary modules
+    if (project.name != rootProject.name) {
+        afterEvaluate {
+            // 0.10.1
+            // apply(from = "${rootDir}/gradle/dokka.gradle")
+            // apply(from = "${rootDir}/gradle/dokka.gradle.kts")
+            
+            // 0.9.18
+            // apply(from = "${rootDir}/gradle/0.9.18_dokka.gradle")
+            // apply(from = "${rootDir}/gradle/0.9.18_dokka.gradle.kts")
+        }
+    }
+}

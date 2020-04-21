@@ -10,7 +10,8 @@ All necessary information is available in these files:
 
 See the comments.
 
-## Issue
+## Issue: 
+### files: dokka.gradle.kts or dokka.gradle, library version: 0.10.1
 
 Current task result:
 
@@ -61,3 +62,22 @@ tasks.withType(org.jetbrains.dokka.gradle.DokkaTask::class.java).all {
 ```
 
 And place it at the end of `some_module/build.gradle.kts` file.
+
+## Issue
+### files: dokka.gradle.kts or dokka.gradle, library version: 0.9.18
+This versions is working with the groovy script.
+See:
+[/gradle/0.9.18_dokka.gradle](https://github.com/petersamokhin/dokka-issue-reproduce/blob/master/gradle/0.9.18_dokka.gradle)<br>
+
+But with the .kts script
+See:
+[/gradle/0.9.18_dokka.gradle](https://github.com/petersamokhin/dokka-issue-reproduce/blob/master/gradle/0.9.18_dokka.gradle.kts)<br>
+
+There is an error:
+```
+* What went wrong:
+Could not determine the dependencies of task ':core:dokka'.
+> kotlin.KotlinNullPointerException (no error message)
+```
+
+# So, the only working variant is groovy script with 0.9.18 version.
