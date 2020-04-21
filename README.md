@@ -47,3 +47,5 @@ See https://docs.gradle.org/6.3/userguide/command_line_interface.html#sec:comman
 BUILD SUCCESSFUL in 1s
 2 actionable tasks: 1 executed, 1 up-to-date
 ```
+
+And there are no files produced by dokka.
