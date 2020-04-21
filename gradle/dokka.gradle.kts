@@ -54,6 +54,9 @@ tasks.withType(org.jetbrains.dokka.gradle.DokkaTask::class.java).all {
     // you should use a multiplatform block with inner blocks for each platform. >>
     // `subProjects` are available only on DokkaTask object
     configuration {
+        // this does nothing
+        impliedPlatforms = listOf("common")
+        
         skipEmptyPackages = true
         perPackageOption {
             prefix = "com.petersamokhin.someproject.internal"
