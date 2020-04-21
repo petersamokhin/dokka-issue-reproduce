@@ -17,7 +17,7 @@ allprojects {
     // it makes no sense, where to place this line;
     // as far as I can see the command line output;
     // docs directory is empty in all cases
-    apply(from = "${rootDir}/gradle/dokka.gradle.kts")
+    // apply(from = "${rootDir}/gradle/dokka.gradle.kts")
 
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class).all {
         JavaVersion.VERSION_1_8.toString().also {

@@ -1,6 +1,6 @@
 # Dokka
-## Kotlin Multuplatform
-## Issue reproduce project
+### Kotlin Multuplatform
+### Issue reproduce project
 
 All necessary information is available in these files:
 
@@ -10,7 +10,7 @@ All necessary information is available in these files:
 
 See the comments.
 
-### Issue
+## Issue
 
 Current task result:
 
@@ -49,3 +49,15 @@ BUILD SUCCESSFUL in 1s
 ```
 
 And there are no files produced by dokka.
+
+### How to fix:
+Copy the entire code:
+
+```kotlin
+apply(plugin = "org.jetbrains.dokka")
+tasks.withType(org.jetbrains.dokka.gradle.DokkaTask::class.java).all {
+	/* sure, the entire code */
+}
+```
+
+And place it at the end of `some_module/build.gradle.kts` file.
